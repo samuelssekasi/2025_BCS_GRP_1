@@ -4,7 +4,6 @@
 int main()
 {
    int choice,quantity,money,price,total;
-   char more;
 
     //Display menu
 printf("******MENU******\n");
@@ -45,14 +44,8 @@ printf("ENTER THE QUANTITY OF THE PRODUCT: ");
 scanf("%d",&quantity);
 
 // Calculate the total
-total += quantity * price;
+total = quantity * price;
 printf("Totalcost = UGX %d\n",total);
-
-//Ask the customer if they want more
-printf("Do you want another item?(yes/no):");
-scanf(" %c", &more);
-while(more == 'yes');
-
 
 //Ask the customer for the money
 printf("Please insert money (UGX): ");
