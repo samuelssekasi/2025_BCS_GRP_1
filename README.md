@@ -1,6 +1,7 @@
 # 2025_BCS_GRP_1
-Class project repo for learning principles of programming C
 Project ("Vending machine")
+A vending machine is an automatic machine that provides a platform for purchase of specific items to the customers after making choice and inserting money.
+It is also able to calculate for total price, provide change(balance) in case the customer inputs more money than the total, however, it can show the customer more money needed if incase insufficient funds are entered.
 **Group members**
 1.SSEKASI SAMUEL   2025/BCS/172/PS
 2.ANGWECH MONICA RITAH   2025/BCS/037/PS
