@@ -2,8 +2,7 @@
 
 **Description**
 Project ("Vending machine")
-A vending machine is an automatic machine that provides a platform for purchase of specific items to the customers after making choice and inserting money.
-It is also able to calculate for total price, provide change(balance) in case the customer inputs more money than the total, however, it can show the customer more money needed if incase insufficient funds are entered.
+A vending machine is an automatic machine that provides a platform for purchase of specific items to the customers after making choice and inserting money, with this it can  calculate  total price, provide change(balance) in case the customer inputs more money than the total, however, it can show the customer more money needed if incase insufficient funds are entered.
 
 
 **Group members**             RegNo                   Role    
