@@ -1,22 +1,27 @@
 #include <stdio.h>
-//FUNCTION DECLARATIONS
-void displayMenu();//FUNCTION TO DISPLAY THE MENU
-int getChoice();//FUNCTION TO ALLOW CHOICE SELECTION
-int getPrice(int choice);// FUNCTION RETURN PRICE
-void calculateChange(int change);//FUNCTION TO CALCULATE AND DISPLAY THE CHANGE
-
+#include"VENDING.h"
 int main(){
-    int choice,quantity,money,inserted_money,total,change,price;
+    int choice,quantity,money,inserted_money=0,total=0,change,price;
     char more;
-    //VENDING MACHINE ORDER
-    displayMenu();
+    char mode;
+    struct menu items[]={{"Soda",1000,30},{"Water",1000,40},{"Yogurt",4000,15},{"Snacks",3000,30},{"Icecream",2000,25}};
+    int size = sizeof(items)/sizeof(items[0]);
+    loadStock(items,size);
+    printf("Enter mode:(C)ustomer or (O)wner:");
+    scanf(" %c",&mode);
+    if(mode=='O'||mode=='o'){
+        restockItems(items,size);
+        printf("Updated stock:\n");
+        displayMenu(items,size);
+        return 0;
+}
+displayMenu(items,size);
 do{
     choice =getChoice();
-    price =getPrice(choice);
-    printf("Enter quantity:");
-    scanf("%d",&quantity);
-    total+=price*quantity;
-    printf("You have added UGX %d to your bill.Current bill = UGX %d\n",price*quantity,total);
+    price =getPrice(items,choice);
+    int cost=stockCheck(items,choice);
+    total+=cost;
+    printf("Your current total is UGX %d\n",total);
     printf("Do you want to purchase another item?(y/n):");
     scanf(" %c",&more);
    } while(more=='Y'||more=='y');
@@ -41,56 +46,8 @@ printf("Exact payment received.No change.\n");
 }
 return 0;
 }
-//FUNCTION DEFINITIONS
-void displayMenu(){
-    printf("*****MENU*****\n");
-    printf("1.Soda (UGX 1000)\n");
-    printf("2.Water (UGX 1000)\n");
-    printf("3.Yogurt (UGX 4000)\n");
-    printf("4.Snacks (UGX 3000)\n");
-    printf("5.Icecream (UGX 2000)\n");
-    printf("*****THANKS*****\n");
-    }
-int getChoice(){
- int choice;
-    while (1) {
-        printf("Please select an item (1-5): ");
-        scanf("%d", &choice);
-        if (choice >= 1 && choice <= 5) {
-            return choice;
-        }
-        printf("Invalid choice!! Please make a valid choice.\n");
-}
-}
-int getPrice(int choice){
-switch (choice) {
-        case 1: printf("You have selected Soda.\n");return 1000;
-        case 2: printf("You have selected Water.\n");return 1000;
-        case 3: printf("You have selected Yogurt.\n");return 4000;
-        case 4: printf("You have selected Snacks.\n");return 3000;
-        case 5: printf("You have selected Icecream.\n");return 2000;
-        default: return 0;
 
-}
-}
-void calculateChange(int change){
-printf("*****change breakdown*****\n");
-    printf("Currency\tNumber\n");
-    printf("----------------------\n");
-    int denominations[] = {50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50};
-    int count,i;
-    for (i = 0; i < 10; i++) {
-        count = change / denominations[i];
-        if (count > 0) {
-            printf("UGX %d\t%d\n", denominations[i], count);
-            change %= denominations[i];
-        }
-    }
 
-    if (change > 0) {
-        printf("Your change is UGX %d\n", change);
-    }
-}
 
 
 
